@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Job Applicants Report</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
+    <script src="src/app.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <table>
+        <thead>
+          <tr>
+            <th>Job</th>
+            <th>Applicant Name</th>
+            <th>Email Address</th>
+            <th>Website</th>
+            <th>Skills</th>
+            <th>Cover Letter Paragraph</th>
+          </tr>
+          <tr v-for="applicant of applicants">
+            <td v-if="!jobListed(applicant.job_id)" :rowspan="getNumApplicants(applicant.job_id)">{{getJobName(applicant.job_id)}}</td>
+            <td>{{applicant.name}}</td>
+            <td><a :href="applicant.email">{{applicant.email}}</a></td>
+            <td><a :href="applicant.website">{{applicant.website}}</a></td>
+            <td>
+              <ul>
+                <li v-for="skill of getSkills(applicant.id)">{{skill.name}}</li>
+              </ul>
+            </td>
+            <td>{{applicant.cover_letter}}</td>
+          </tr>
+          <tr>
+            <td colspan="6">{{totalApplicants}} Applicants, {{totalUniqueSkills}} Unique Skills</td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+</html>

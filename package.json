@@ -1,0 +1,8 @@
+{
+  "name": "objective-solution",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "morgan": "~1.6.1",
+    "express": "4.10.2"
+  }
+}
